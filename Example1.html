@@ -13196,7 +13196,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[6, 3]</pre>
+<pre>[4, 3]</pre>
 </div>
 
 </div>
@@ -13229,7 +13229,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>9</pre>
+<pre>7</pre>
 </div>
 
 </div>
@@ -13258,9 +13258,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count those outcomes</span>
-<span class="n">rolls_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">rolls</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rolls_counts</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span>Counter<span class="o">?</span>
 </pre></div>
 
     </div>
@@ -13276,10 +13274,67 @@ div#notebook {
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Counter({7: 8251, 6: 7035, 8: 6976, 9: 5581, 5: 5518, 4: 4166, 10: 4161, 3: 2800, 11: 2705, 12: 1418, 2: 1389})
+
+
+<div class="output_text output_subarea ">
+<pre><span class="ansi-red-fg">Init signature:</span> Counter<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>     
+Dict subclass for counting hashable items.  Sometimes called a bag
+or multiset.  Elements are stored as dictionary keys and their counts
+are stored as dictionary values.
+
+&gt;&gt;&gt; c = Counter(&#39;abcdeabcdabcaba&#39;)  # count elements from a string
+
+&gt;&gt;&gt; c.most_common(3)                # three most common elements
+[(&#39;a&#39;, 5), (&#39;b&#39;, 4), (&#39;c&#39;, 3)]
+&gt;&gt;&gt; sorted(c)                       # list all unique elements
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]
+&gt;&gt;&gt; &#39;&#39;.join(sorted(c.elements()))   # list elements with repetitions
+&#39;aaaaabbbbcccdde&#39;
+&gt;&gt;&gt; sum(c.values())                 # total of all counts
+15
+
+&gt;&gt;&gt; c[&#39;a&#39;]                          # count of letter &#39;a&#39;
+5
+&gt;&gt;&gt; for elem in &#39;shazam&#39;:           # update counts from an iterable
+...     c[elem] += 1                # by adding 1 to each element&#39;s count
+&gt;&gt;&gt; c[&#39;a&#39;]                          # now there are seven &#39;a&#39;
+7
+&gt;&gt;&gt; del c[&#39;b&#39;]                      # remove all &#39;b&#39;
+&gt;&gt;&gt; c[&#39;b&#39;]                          # now there are zero &#39;b&#39;
+0
+
+&gt;&gt;&gt; d = Counter(&#39;simsalabim&#39;)       # make another counter
+&gt;&gt;&gt; c.update(d)                     # add in the second counter
+&gt;&gt;&gt; c[&#39;a&#39;]                          # now there are nine &#39;a&#39;
+9
+
+&gt;&gt;&gt; c.clear()                       # empty the counter
+&gt;&gt;&gt; c
+Counter()
+
+Note:  If a count is set to zero or reduced to zero, it will remain
+in the counter until the entry is deleted or the counter is cleared:
+
+&gt;&gt;&gt; c = Counter(&#39;aaabbc&#39;)
+&gt;&gt;&gt; c[&#39;b&#39;] -= 2                     # reduce the count of &#39;b&#39; by two
+&gt;&gt;&gt; c.most_common()                 # &#39;b&#39; is still in, but its count is zero
+[(&#39;a&#39;, 3), (&#39;c&#39;, 1), (&#39;b&#39;, 0)]
+<span class="ansi-red-fg">Init docstring:</span>
+Create a new, empty Counter object.  And if given, count elements
+from an input iterable.  Or, initialize the count from another mapping
+of elements to their counts.
+
+&gt;&gt;&gt; c = Counter()                           # a new, empty counter
+&gt;&gt;&gt; c = Counter(&#39;gallahad&#39;)                 # a new counter from an iterable
+&gt;&gt;&gt; c = Counter({&#39;a&#39;: 4, &#39;b&#39;: 2})           # a new counter from a mapping
+&gt;&gt;&gt; c = Counter(a=4, b=2)                   # a new counter from keyword args
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.7/collections/__init__.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>     
 </pre>
 </div>
+
 </div>
 
 </div>
@@ -13291,8 +13346,41 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count those outcomes (number of sums of paired elements)</span>
+<span class="n">rolls_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">rolls</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rolls_counts</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Counter({7: 8347, 6: 6990, 8: 6912, 9: 5463, 5: 5409, 10: 4282, 4: 4113, 3: 2857, 11: 2841, 2: 1439, 12: 1347})
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Sort by faces [0] or counts [1] and store the sorted results as a dictionary</span>
-<span class="n">rolls_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">rolls_counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">rolls_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">rolls_counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rolls_counts</span><span class="p">)</span>
 </pre></div>
 
@@ -13310,7 +13398,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{7: 8251, 6: 7035, 8: 6976, 9: 5581, 5: 5518, 4: 4166, 10: 4161, 3: 2800, 11: 2705, 12: 1418, 2: 1389}
+<pre>{12: 1347, 11: 2841, 10: 4282, 9: 5463, 8: 6912, 7: 8347, 6: 6990, 5: 5409, 4: 4113, 3: 2857, 2: 1439}
 </pre>
 </div>
 </div>
@@ -13321,7 +13409,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot the outcome of simulating many dice rolling (Binomial Distribution)</span>
@@ -13348,43 +13436,9 @@ div#notebook {
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If you roll two dice, how likely is it that your sum is greater than 7</span>
-<span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rolls_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rolls_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0.41682</pre>
 </div>
 
 </div>
@@ -13398,14 +13452,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If you roll seven dice, how likely is it that your sum is greater than 35?</span>
-
-<span class="n">faces</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">roll_7_dice</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">choices</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">faces</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">rolls7</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">roll_7_dice</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400_000_000</span><span class="p">)]</span>
-<span class="n">rolls_counts7</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">rolls7</span><span class="p">)</span>
-
-<span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rolls_counts7</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">35</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rolls_counts7</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If you roll two dice, how likely is it that your sum is greater than 7</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rolls_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rolls_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -13424,9 +13472,79 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.0061112575</pre>
+<pre>0.4169</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">duration</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Encodes seconds into a formated string d:h:m:s.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">seconds</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">time</span> <span class="o">//</span> <span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">%</span> <span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="n">time</span> <span class="o">//</span> <span class="mi">3600</span>
+    <span class="n">time</span> <span class="o">%=</span> <span class="mi">3600</span>
+    <span class="n">minutes</span> <span class="o">=</span> <span class="n">time</span> <span class="o">//</span> <span class="mi">60</span>
+    <span class="n">time</span> <span class="o">%=</span> <span class="mi">60</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d:h:m:s-&gt; </span><span class="si">%d</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If you roll seven dice, how likely is it that your sum is greater than 35?</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">faces</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">roll_7_dice</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">choices</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">faces</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">rolls7</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">roll_7_dice</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400_000_000</span><span class="p">)]</span>
+<span class="n">rolls_counts7</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">rolls7</span><span class="p">)</span>
+
+<span class="n">likelihood</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rolls_counts7</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">35</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rolls_counts7</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The likelihood is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">likelihood</span><span class="p">))</span>
+
+<span class="n">duration</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The likelihood is 0.00610669
+d:h:m:s-&gt; 0:0:13:25
+</pre>
+</div>
 </div>
 
 </div>
