@@ -1,9 +1,19 @@
-# Computational-Statistics
+# Computational Statistics
+
+## Overview
+
+This repository contains different materials regarding computational statistics:
+
+- [ComputationalStatistics-master.zip](https://github.com/ksatola/Computational-Statistics/blob/master/ComputationalStatistics-master.zip) - this a repo copy owned by [Brian Spiering](https://github.com/brianspiering/ComputationalStatistics). Brian's talk during [DSCO19]() in San Francisco was a trigger for me to start dealing more systhematically with computational statistics.
+- [analytical_vs_computational.pdf](https://github.com/ksatola/Computational-Statistics/blob/master/analytical_vs_computational.pdf) - a few slides with a context and brief summary of analytical and computational methods.
+
+
+
 Resources related to computational statistics
 
 https://github.com/brianspiering
 
-https://github.com/brianspiering/ComputationalStatistics
+
 
 https://www.bbc.com/bitesize/guides/zp92mp3/revision/1
 
