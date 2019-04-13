@@ -1,4 +1,5 @@
-*.html linguist-language=Jupyter
+# https://github.com/github/linguist#using-gitattributes
+*.html linguist-language=Python
 *.Rmd linguist-language=R
 *.py linguist-language=Python
-*.ipynb linguist-language=Jupyter
+*.ipynb linguist-language=Python
