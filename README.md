@@ -1,4 +1,4 @@
-# Computational Statistics
+# A Gentle Introduction to Computational Statistics
 
 ## Overview
 There are two perspectives we can look on statistical problems while solving them: analytical and computational.
