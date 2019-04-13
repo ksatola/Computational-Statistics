@@ -117,6 +117,8 @@ sum(v for k, v in rolls_counts.items() if k > 7) / sum(rolls_counts.values())
 ```
 **The result is** at the same time the likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7.
 
+**Example 1: Simulating Outcomes** ([Jupyter](https://github.com/ksatola/Computational-Statistics/blob/master/Example1.ipynb), [HTML](https://ksatola.github.io/projects/ComputationalStatisticsExample1.html))
+
 ## Resources
 
 This repository contains different materials regarding computational statistics:
