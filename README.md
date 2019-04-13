@@ -103,7 +103,9 @@ import matplotlib.pyplot as plt
 labels, values = zip(*rolls_counts.items()) # Unpack dict
 plt.bar(x=labels, height=values);
 ```
+
 <center><img src="images/2019-04-12-001.png" width="50%"/></center>
+
 
 Now, we are ready to answer our question. The code below sums the number of occurences of sums greater than 7 and divides it by all occurences.
 
