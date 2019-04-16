@@ -1,4 +1,5 @@
 # https://github.com/github/linguist#using-gitattributes
+# https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 *.html linguist-language=Python
 *.Rmd linguist-language=R
 *.py linguist-language=Python
