@@ -35,7 +35,7 @@ There are 15 pairs where the sum of elements is greater than 7. We can calculate
 
 **The answer is:** There is 42% of likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7.
 
-The example above is simple to solve analitically as the number of variations is reasonable small (36) but what if our problem was more complex? For example, how we could solve analitically the following question: **If you roll seven 6-sided dice, how likely is it that the sum of results is greater than 35?** In this case we would have 6 to the power of 7 possible outcomes, which is 279,936 variations of pairs. Solving this problem analitically would take us plenty of time...
+The example above is simple to solve analitically as the number of variations is reasonable small (36) but what if our problem was more complex? For example, how we could solve analitically the following question: **If you roll seven 6-sided dice, how likely is it that the sum of results is greater than 35?** In this case `we would have 6 to the power of 7 possible outcomes, which is 279,936 variations of pairs`. Solving this problem analitically would take us plenty of time...
 
 ### Computational Method
 
