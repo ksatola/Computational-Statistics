@@ -146,19 +146,19 @@ Solving the problem analytically, we would have a problem with the more complex 
 
 ## Example 2: Permutation Testing
 
-In this example **we would like to know if a drug is effective or not**. This is a classic A/B testing problem which we solve in analytical and computational way.
+In this example **we would like to know if a drug is effective or not**. This is a classic A/B testing problem which we solve in an analytical and computational way.
 
 The first and common to both methods step is to describe the problem mathematically and define a few inputs to our analysis. For this, we will use a standard hypothesis testing approach, defining our null and alternative hypotheses as follows:
 
 <center><img src="images/2019-04-12-002.png" width="100%"/></center>
 
-For the above, I will assume a significance level (alpha) of 0.01. The significance level is the threshold for rejecting a difference between the groups.
+For the above, I will assume a significance level (alpha) of `0.01`. **The significance level is the threshold for rejecting a difference between the groups**.
 
-In simple words, to confirm if the drug works, we need to find out if there is a statistically significant difference between the two groups of patients. We will be comparing means of the group results (samples) to see if they significantly differ or not.
+In simple words, to confirm if the drug works, we need to find out if there is a **statistically significant difference** between the two groups of patients. We will be comparing means of the group results (samples) to see if they significantly differ or not.
 
 We represent our groups as lists where each number is a result of patient's examination. In our case we do not know what the numbers means and if the higher number represents the better result or not. That is why two-tailed alternative hypothesis is chosen - we just want to confirm if the two groups differ significantly.
 
- The treatment group is where patients get the drug and the control group is where patients do not get the drug (only a kind of mockup/not working replacement).
+The `treatment group` is where patients get the drug and the `control group` is where patients do not get the drug (only a kind of mockup/not working replacement).
 
 ```python
 import numpy as np
