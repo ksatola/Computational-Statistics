@@ -173,7 +173,7 @@ placebo = [54, 51, 58, 44, 55, 52, 42, 47, 58, 46]
 alpha = 0.01
 ```
 
-For our groups, we observe the means difference of 12.97 but the question is if this difference is statistically significant and the drug works? Is the difference only between the two samples (drug and placebo) or we could infere that this would be also valid for the entire patients population?
+For our groups, we observe `the means difference of 12.97` but the question is if this difference is statistically significant and the drug works? Is the difference observed only between the two samples (drug and placebo) or we could infere that this would be also valid for the entire patients population?
 
 ```python
 # Means difference of the samples
@@ -184,7 +184,7 @@ np.mean(drug) - np.mean(placebo)
 
 ### Analytical Method
 
-First, let's try to answer to this question analytically. For that we will use T-Student sampling distribution and calculate t-test statistic. Statistical tests usually come with some assumptions, and t-test is not an exception.
+First, let's try to answer to this question analytically. For that **we will use T-Student sampling distribution and calculate t-test statistic**. Statistical tests usually come with some assumptions, and t-test is not an exception.
 
 T-test assumptions:
 
@@ -193,9 +193,9 @@ T-test assumptions:
 3. Samples should be of the same size.
 4. At best there should be more than 20 observations in a sample.
 
-Assumtions 3 and 4 are quick to deal with. Our first sample (drug) has 9 observations and the second (placebo) 10. They are not equal in size but close, so we can live with it. The small number of observations (less than 20) may impact the quality of t-test outcome but we have no other choice but to try (we do not have any other observations).
+Assumptions 3 and 4 are quick to deal with. Our first sample (drug) has 9 observations and the second (placebo) 10. They are not equal in size but close, so we can live with it. The small number of observations (less than 20) may impact the quality of t-test outcome but we have no other choice but to try (we do not have any other observations).
 
-To check if assumption one is is met we will use Shapiro-Wilk test designed specifically for samples containing less than 50 observations. For that we will use a helper function `normaltest()` which utilizes `shapiro()` function of the `scipy.stats` module.
+To check if assumption one is met, we will use **Shapiro-Wilk test** designed specifically for samples containing less than 50 observations. For that we will use a helper function `normaltest()` which utilizes `shapiro()` function of the `scipy.stats` module.
 
 ```python
 from scipy import stats
@@ -234,7 +234,7 @@ Our samples come from a normal distribution, although it is difficult to say tha
 
 Now it is time to deal with the second assumtion, stating that our samples should come from populations with equal variances. It is important to mention that we are not checking variances of the samples (their variances are not equal) but if they come from populations with equal variances. 
 
-To check if the second assumption is valid, we will use `varsequals()` helper function utilizing `bartlett()` function from `scipy.stats` module. The function uses Bartlett's test which answers the question if our samples come from populations with equal variances.
+To check if the second assumption is valid, we will use `varsequals()` helper function utilizing `bartlett()` function from `scipy.stats` module. The function uses **Bartlett's test** which answers the question if our samples come from populations with equal variances.
 
 ```python
 def varsequals(sample1, sample2, alpha=0.01):
@@ -244,14 +244,13 @@ def varsequals(sample1, sample2, alpha=0.01):
     Reference: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.bartlett.html
     ''' 
     T, p = stats.bartlett(sample1, sample2)
-    #print("T = {:g}".format(T))
-    #print("p = {:g}".format(p))
+    
     if p < alpha:  # null hypothesis: all input samples are from populations with equal variances
         print("Not all input samples are from populations with equal variances.")
     else:
         print("All input samples are from populations with equal variances.")
 ```
-It seems that our second assumption is also valid.
+It seems that our second assumption is also valid:
 
 ```python
 varsequals(drug, placebo)
@@ -259,7 +258,7 @@ varsequals(drug, placebo)
 All input samples are from populations with equal variances.
 ```
 
-Now, we can perform our test and check if the mean difference of our two samples is statistically significant. The remaining question is if our samples are expected to have been drawn from the same population. To do this, we will do a t-test using `ttest_ind()` function from `scipy.stats` module.
+Now, we can perform our test and check if the mean difference of our two samples is statistically significant. The remaining question is if our samples are expected to have been drawn from the same population. To do this, we will do a **t-test** using `ttest_ind()` function from `scipy.stats` module.
 
 ```python
 # We assume all observations are independent
@@ -269,7 +268,7 @@ print('t={:.4f}, p={:.4f}'.format(t_stat, p))
 t=3.9357, p=0.0011
 ```
 
-The t-test statistic value is 3.9357 and our p-value is 0.0011. The p-value is a probability of obtaining a result equal to or more extreme than was observed in the data. If our p-value (0.0011) is less than our alpha (0.01) than we can reject our null hypothesis (that there is no difference between drug and placebo) and assume the alternative hypothesis that the drug is effective.
+The `t-test statistic value is 3.9357` and our `p-value is 0.0011`. The **p-value** is a probability of obtaining a result equal to or more extreme than was observed in the data. If our p-value (0.0011) is less than our alpha (0.01 / 2 = 0.005) than we can reject our null hypothesis (that there is no difference between drug and placebo) and assume the alternative hypothesis that the drug is effective.
 
 ```python
 # Interpret via p-value
@@ -281,7 +280,9 @@ else:
 Reject the null hypothesis that the means are equal.
 ```
 
-We can also confirm our finding calculating degrees of freedom,
+The p-value returned by the `ttest_ind()` implementation of t-test is two-tailed by design (if we were testing one-tailed hypothesis, is such case we would have to divide the p-value by 2). Again, in our case the p-value is far lower than our alpha, so we can conclude that we can reject the null hypothesis.
+
+We can also confirm our finding calculating the `degrees of freedom`,
 
 ```python
 # Calculate degrees of freedom
@@ -291,7 +292,7 @@ df
 17
 ```
 
-and a critical value.
+and the `critical value`.
 
 ```python
 # Calculate the critical value (two-tailed test)
@@ -312,9 +313,9 @@ else:
     
 Reject the null hypothesis that the means are equal.
 ```
-To summarize the analytical approach, we proved that we have sufficient evidence to reject the null hypothesis which means that the drug works.
+**To summarize the analytical approach**, we proved that we have sufficient evidence to reject the null hypothesis which means that the drug works.
 
-### Computational Method
+### Computational Method (Permutation Testing)
 
 Now it is time to check if the drug is effective in a computational way. We will be using our hypothesis definition but instead of doing a statistical test and satisfying its assumption we assume the null hypothesis is true, so there is no difference in the groups.
 
@@ -328,7 +329,9 @@ print(f"{observed_diff:.2f}")
 12.97
 ```
 
-If there is no difference in means of the treatment and control groups, we can merge the observations from both groups and then check how likely is that the observed_diff value or greater appears. We will now simulate the mean differences doing random groups assignment from the common pool (drug and placebo combined) many times.
+If we assume that there is no difference in means of the treatment and control groups, we can merge the observations from both groups and then check how likely is that the observed_diff value or greater appears (we will calculate an absolute value of observed_diff to cover two-tailed case).
+
+We will now simulate the mean differences doing random groups assignment from the common pool (drug and placebo combined) many times.
 
 ```python
 from statistics import mean
@@ -355,28 +358,32 @@ for _ in range(n):
     
     # Increase counter if the simulated mean difference
     # is equal or greater from the observed mean difference
-    count += (shuffled_diff >= observed_diff)
+    # abs() as we test two-tailed alternative hypothesis
+    count += (abs(shuffled_diff) >= observed_diff)
 ```
+
 If the null hypothesis is true (the drug does not work, on average group means are close to 0) we should observe many occurences of mean differences equal or greater to observed_diff. If not, then we can safely reject the null hypothesis (as the observed_diff would be exceptional for samples drawn from the same distribution).
 
-Our simulation result shows that 12 times on 10,000 simulated mean difference was equal or greater then observed one. According to our logic, if such difference was common we would get the difference at least 12.97 many more times.
+Our simulation result shows that 16 times on 10,000 simulated mean difference was equal or greater then observed one (every time we run out test we may get a little bit different number). According to our logic, if such difference was common we would get the difference at least 12.97 many more times.
 
 ```python
 print(f"""{n:,} label reshufflings produced only {count} instances 
 with a difference at least as extreme as the observed difference of {observed_diff:.2f}.""")
 
-10,000 label reshufflings produced only 12 instances 
+10,000 label reshufflings produced only 16 instances 
 with a difference at least as extreme as the observed difference of 12.97.
 ```
-We can also calculate a p-value easily. To recall, p-value is a chance of observing the current difference when there is truly no difference. In other words it is a probability of obtaining a result equal to or more extreme than was observed in the data.
+
+We can also calculate a **p-value** easily. To recall, **p-value** is a chance of observing the current difference when there is truly no difference. In other words it is a probability of obtaining a result equal to or more extreme than was observed in the data.
 
 ```python
 p = count / n
 p
 
-0.0012
+0.0016
 ```
-The p-value is only 0.0012 and is far less than our significance level (alpha) established at 0.01 level.
+
+The p-value is only 0.0016 and is far less than our significance level (alpha) established at 0.01/2 = 0.005 level. It is important to notice, that this p-value value has nothing to do with the p-value calculated with the analytical method.
 
 ```python
 # Interpret via p-value
@@ -390,9 +397,6 @@ Reject the null hypothesis that the means are equal.
 One of the nice "side effects" of computational approach is that doing simulations we gather data we can use to interpret our result visually.
 
 ```python
-# Find the quantile for the alpha/2 cutoff (two-tailed test)
-cv = np.max(simulated_means) - stats.t.ppf(1.0 - alpha/2, df)
-
 simulated_means = np.asarray(simulated_means)
 plt.figure(figsize=(16, 8))
 sns.distplot(simulated_means, color="skyblue", kde=True, hist=True, rug="True")
@@ -400,18 +404,15 @@ plt.title("Simulated Differences of drug and placebo group means for the null hy
 plt.xlabel("Probability Means Difference", fontsize=12)
 plt.ylabel("Percent", fontsize=12)
 
-# Critical value
-plt.axvline(cv, color='g');
-
 # Observed mean difference
 plt.axvline(observed_diff, color='r'); 
 ```
 
 <center><img src="images/2019-04-12-003.png" width="100%"/></center>
 
-The picture above shows our simulated distribution of mean difference. The green vertical line represents the critical value and the red one the mean difference observed between drug and placebo groups. We clearly see that it is very unlikely that drug and placebo samples come from the same distribution (red line).
+The picture above shows our simulated distribution of mean difference. The red vertical line represents the mean difference observed between drug and placebo groups (observed_diff). We can clearly see that it is very unlikely that drug and placebo samples come from the same distribution (the red line at the very end of the distribution tail).
 
-To summarize the computational approach, we can say that it we have sufficient evidence to reject the null hypothesis, and we conclude that the drug is effective.
+**To summarize the computational approach**, we can say that it we have sufficient evidence to reject the null hypothesis, and we conclude that the drug is effective.
 
 
 ### Analytical vs. Computational
@@ -424,7 +425,7 @@ The analytical and computational approaches are in general very similar except t
 		- Set alpha (the threshold for rejecting differences).
 	-  Collect data.
 	-  **Pick a sampling distribution, calculate a test statistic, remember about assumptions.**
-	-  Calculate p-value.
+	-  Calculate p-value **(and if needed, also the critical value)**.
 	-  Draw conclusion.
 
 - Computational approach
