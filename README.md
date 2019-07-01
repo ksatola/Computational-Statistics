@@ -33,6 +33,8 @@ There are 15 pairs where the sum of elements is greater than 7. We can calculate
 
 \<number of pairs with the sum greater than 7> / \<number of all possible pairs> = 15/36 = 0.4166(6)
 
+The number of all possible pairs (variations) is calculated as <number of die sides> to the power of <number of positions, possible outcomes> = 6^2 = 36.
+
 **The answer is:** There is 42% of likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7.
 
 The example above is simple to solve analitically as the number of variations is reasonable small (36) but what if our problem was more complex? For example, how we could solve analitically the following question: **If you roll seven 6-sided dice, how likely is it that the sum of results is greater than 35?** In this case we would have 6 to the power of 7 possible outcomes, which is 279,936 variations of pairs. Solving this problem analitically would take us plenty of time...
