@@ -123,7 +123,7 @@ likelihood
 
 0.41662
 ```
-The result is at the same time the likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7. Of course, the result we got using computational method (42%) matches the one derived from the analytical method (42%).
+**The result is** at the same time the likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7. Of course, the result we got using computational method (42%) matches the one derived from the analytical method (42%).
 
 ### Analytical vs. Computational
 
