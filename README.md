@@ -448,5 +448,5 @@ You can find a complete working code in Jupyter notebook format below.
 - [ComputationalStatistics-master.zip](https://github.com/ksatola/Computational-Statistics/blob/master/ComputationalStatistics-master.zip) - a copy of [Brian Spiering](https://github.com/brianspiering/ComputationalStatistics) repo. Brian's talk during [DSCO19](https://www.sfdatainstitute.org/) in San Francisco was a trigger for me to start dealing more systhematically with computational statistics.
 - [analytical\_vs\_computational.pdf](https://github.com/ksatola/Computational-Statistics/blob/master/analytical_vs_computational.pdf) - a few slides with a context and brief summary of analytical and computational methods.
 - [Required number of permutations for a permutation-based p-value](https://stats.stackexchange.com/questions/80025/required-number-of-permutations-for-a-permutation-based-p-value)
-- [Permutation Tests, R example](https://thomasleeper.com/Rcourse/Tutorials/permutationtests.html)
 - [What is a Permutation Test](https://www.r-bloggers.com/what-is-a-permutation-test/amp/)
+- [Permutation Tests, R example](https://thomasleeper.com/Rcourse/Tutorials/permutationtests.html)
