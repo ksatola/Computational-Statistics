@@ -19,7 +19,7 @@ Let's try to answer the following question using both methods: **If you roll two
 
 ### Analytical Method
 
-First, let's answer with the **analytical method**. The problem type above is variations with repetition. We have 6 to the power of 2 possible outcomes, 36 pairs in total. A pair (x, y) would consist of two numbers, x being a rolling result of the first die and y being a rolling result of the second one.
+First, let's answer with the **analytical method**. The problem type above is variations with repetition. `We have 6 to the power of 2 possible outcomes, 36 pairs in total`. A pair (x, y) would consist of two numbers, x being a rolling result of the first die and y being a rolling result of the second one.
 
 Our results would look like like these: (1, 1), (1, 2), (1, 3), ..., (6, 6) but we are interested in the ones where the sum of pair elements is greater than 7. Let's enumerate only the pair matching our requirement:
 
@@ -32,8 +32,6 @@ Our results would look like like these: (1, 1), (1, 2), (1, 3), ..., (6, 6) but 
 There are 15 pairs where the sum of elements is greater than 7. We can calculate the likelihood of getting the sum of results as:
 
 \<number of pairs with the sum greater than 7> / \<number of all possible pairs> = 15/36 = 0.4166(6)
-
-The number of all possible pairs (variations) is calculated as <number of die sides> to the power of <number of positions, possible outcomes> = 6^2 = 36.
 
 **The answer is:** There is 42% of likelihood that if we roll two 6-sided dice we get the sum of the results greater than 7.
 
